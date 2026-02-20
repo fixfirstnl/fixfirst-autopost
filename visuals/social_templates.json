@@ -1,0 +1,189 @@
+{
+  "instagram_posts": {
+    "dimensions": "1080x1080",
+    "aspect_ratio": "1:1",
+    "templates": {
+      "tip_card": {
+        "description": "Single actionable tip with bold headline and product branding",
+        "layout_grid": {
+          "header_zone": "top 15% – brand logo + product name",
+          "headline_zone": "15%–40% – large bold tip number and headline",
+          "body_zone": "40%–75% – tip text (max 3 lines), icon illustration",
+          "cta_zone": "75%–90% – CTA button or URL",
+          "footer_zone": "bottom 10% – hashtags row + brand colour bar"
+        },
+        "color_schemes": {
+          "diy": { "primary": "#1565C0", "secondary": "#BBDEFB", "accent": "#FF6F00", "text": "#FFFFFF" },
+          "survival": { "primary": "#1B5E20", "secondary": "#C8E6C9", "accent": "#F9A825", "text": "#FFFFFF" },
+          "budget": { "primary": "#2E7D32", "secondary": "#E8F5E9", "accent": "#F57F17", "text": "#FFFFFF" }
+        },
+        "font_suggestions": {
+          "headline": "Bebas Neue 72pt",
+          "body": "Poppins Regular 28pt",
+          "cta": "Poppins SemiBold 24pt"
+        }
+      },
+      "before_after": {
+        "description": "Side-by-side before/after comparison for DIY repair topics",
+        "layout_grid": {
+          "left_panel": "0%–50% width – BEFORE photo with red 'VOOR' label overlay",
+          "right_panel": "50%–100% width – AFTER photo with green 'DAARNA' label overlay",
+          "center_divider": "vertical line or arrow icon at 50%",
+          "headline_zone": "top 12% – full-width headline banner",
+          "footer_zone": "bottom 12% – product name + CTA"
+        },
+        "color_schemes": {
+          "default": { "before_tint": "rgba(200,0,0,0.15)", "after_tint": "rgba(0,150,0,0.15)", "headline_bg": "#1A237E", "text": "#FFFFFF" }
+        },
+        "font_suggestions": {
+          "label": "Impact or Bebas Neue 60pt",
+          "headline": "Montserrat ExtraBold 42pt",
+          "caption": "Open Sans 22pt"
+        }
+      },
+      "checklist": {
+        "description": "Numbered checklist card for step-by-step guides",
+        "layout_grid": {
+          "header_zone": "top 18% – icon + bold title",
+          "list_zone": "18%–82% – 4–6 checklist items with tick boxes",
+          "footer_zone": "bottom 18% – 'Download full guide' CTA + URL"
+        },
+        "color_schemes": {
+          "diy": { "primary": "#37474F", "item_bg": "#ECEFF1", "tick_color": "#43A047", "text": "#212121" },
+          "survival": { "primary": "#263238", "item_bg": "#CFD8DC", "tick_color": "#F57F17", "text": "#212121" }
+        },
+        "font_suggestions": {
+          "title": "Raleway Bold 48pt",
+          "item": "Lato Regular 28pt",
+          "cta": "Lato Bold 24pt"
+        }
+      }
+    }
+  },
+  "instagram_stories": {
+    "dimensions": "1080x1920",
+    "aspect_ratio": "9:16",
+    "templates": {
+      "swipe_up_cta": {
+        "description": "Full-screen product visual with swipe-up / link sticker CTA",
+        "layout_grid": {
+          "bg_image_zone": "full frame – blurred or darkened product photo",
+          "product_mockup_zone": "centre 30%–70% vertically – product cover art",
+          "headline_zone": "top 20% – product name + value proposition",
+          "price_zone": "65%–75% – 'Normaal €XX – Nu €YY' badge",
+          "cta_zone": "bottom 20% – 'SWIPE UP / LINK IN BIO' animated arrow"
+        },
+        "color_schemes": {
+          "default": { "overlay": "rgba(0,0,0,0.50)", "headline_color": "#FFFFFF", "badge_bg": "#E53935", "badge_text": "#FFFFFF", "cta_color": "#FFD600" }
+        },
+        "font_suggestions": {
+          "headline": "Bebas Neue 80pt",
+          "price": "Montserrat Bold 50pt",
+          "cta": "Poppins Black 36pt"
+        }
+      },
+      "poll": {
+        "description": "Engagement poll story to boost algorithm reach",
+        "layout_grid": {
+          "bg_zone": "full frame – branded gradient",
+          "question_zone": "25%–50% – bold poll question text",
+          "poll_sticker_zone": "50%–65% – placeholder for Instagram poll sticker",
+          "context_zone": "65%–80% – short supporting sentence",
+          "footer_zone": "bottom 10% – profile handle"
+        },
+        "color_schemes": {
+          "diy": { "gradient_start": "#1565C0", "gradient_end": "#0D47A1", "text": "#FFFFFF" },
+          "survival": { "gradient_start": "#1B5E20", "gradient_end": "#33691E", "text": "#FFFFFF" }
+        },
+        "font_suggestions": {
+          "question": "Montserrat ExtraBold 56pt",
+          "context": "Poppins Regular 30pt"
+        }
+      },
+      "quiz": {
+        "description": "Knowledge quiz to drive saves and shares",
+        "layout_grid": {
+          "header_zone": "top 15% – 'QUIZ TIME 🎯' header",
+          "question_zone": "20%–45% – question text",
+          "options_zone": "50%–80% – 4 answer tiles (2×2 grid)",
+          "footer_zone": "bottom 10% – 'Answer tomorrow!' teaser"
+        },
+        "color_schemes": {
+          "default": { "bg": "#212121", "question_color": "#FFFFFF", "option_bg": "#37474F", "option_text": "#FFFFFF", "correct_hint": "#43A047" }
+        },
+        "font_suggestions": {
+          "header": "Bebas Neue 72pt",
+          "question": "Poppins SemiBold 44pt",
+          "option": "Poppins Regular 32pt"
+        }
+      }
+    }
+  },
+  "tiktok_thumbnails": {
+    "dimensions": "1080x1920",
+    "aspect_ratio": "9:16",
+    "templates": {
+      "hook_thumbnail": {
+        "description": "High-contrast thumbnail designed to stop the scroll",
+        "layout_grid": {
+          "bg_zone": "full frame – bold colour block or action photo",
+          "hook_text_zone": "top 35% – 2–3 word shock/hook headline in huge font",
+          "face_zone": "centre – person's face showing emotion (optional)",
+          "result_zone": "bottom 25% – result teaser text or before/after split"
+        },
+        "color_schemes": {
+          "diy": { "bg": "#FF6F00", "text": "#FFFFFF", "accent": "#212121" },
+          "survival": { "bg": "#1B5E20", "text": "#F9A825", "accent": "#FFFFFF" },
+          "budget": { "bg": "#1A237E", "text": "#FFFFFF", "accent": "#FFD600" }
+        },
+        "font_suggestions": {
+          "hook": "Impact or Bebas Neue 120pt",
+          "result": "Montserrat ExtraBold 60pt"
+        }
+      }
+    }
+  },
+  "pinterest_pins": {
+    "dimensions": "1000x1500",
+    "aspect_ratio": "2:3",
+    "templates": {
+      "infographic_pin": {
+        "description": "Tall infographic-style pin for high Pinterest re-pin rate",
+        "layout_grid": {
+          "header_zone": "top 12% – brand logo + board title",
+          "hero_image_zone": "12%–45% – product image or step-photo",
+          "title_zone": "45%–58% – bold pin headline",
+          "content_zone": "58%–85% – 3–5 bullet tips with icon",
+          "footer_zone": "bottom 15% – website URL + CTA"
+        },
+        "color_schemes": {
+          "diy": { "primary": "#BF360C", "secondary": "#FFCCBC", "text": "#212121", "header_bg": "#BF360C", "header_text": "#FFFFFF" },
+          "survival": { "primary": "#33691E", "secondary": "#DCEDC8", "text": "#1B5E20", "header_bg": "#33691E", "header_text": "#FFFFFF" },
+          "budget": { "primary": "#1B5E20", "secondary": "#E8F5E9", "text": "#1B5E20", "header_bg": "#2E7D32", "header_text": "#FFFFFF" }
+        },
+        "font_suggestions": {
+          "header": "Playfair Display Bold 40pt",
+          "title": "Raleway ExtraBold 52pt",
+          "body": "Lato Regular 28pt",
+          "cta": "Lato Bold 26pt"
+        }
+      },
+      "step_by_step_pin": {
+        "description": "Numbered steps pin – optimised for saves",
+        "layout_grid": {
+          "header_zone": "top 10% – topic title on colour bar",
+          "steps_zone": "10%–88% – 4–6 numbered step rows, each with icon + text",
+          "footer_zone": "bottom 12% – URL + brand name"
+        },
+        "color_schemes": {
+          "default": { "bg": "#FAFAFA", "step_number_bg": "#E53935", "step_number_text": "#FFFFFF", "text": "#212121" }
+        },
+        "font_suggestions": {
+          "title": "Montserrat ExtraBold 54pt",
+          "step_number": "Bebas Neue 60pt",
+          "step_text": "Open Sans 26pt"
+        }
+      }
+    }
+  }
+}
