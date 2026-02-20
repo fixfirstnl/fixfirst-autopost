@@ -1,0 +1,37 @@
+{
+  "bio": "🔧 Home repairs made easy | DIY tips & fixes | Save money!",
+  "bio_extended": "🔧 Home repairs made easy | DIY tips & emergency fixes | Save money, fix it yourself!",
+  "bio_note": "bio is ≤80 chars (TikTok limit). bio_extended is for reference / other platforms.",
+  "default_hashtag_sets": {
+    "diy_repair": [
+      "#HomeRepair", "#DIY", "#FixItYourself", "#HandymanTips", "#HomeImprovement",
+      "#RepairTutorial", "#QuickFix", "#HomeHacks", "#DIYRepair", "#BudgetDIY",
+      "#HomeFixTips", "#HowToFix", "#HomeOwner", "#FixYourHome", "#RepairGuide"
+    ],
+    "survival": [
+      "#SurvivalSkills", "#EmergencyPrep", "#HomeEmergency", "#SurvivalTips", "#Preparedness",
+      "#EmergencyRepair", "#SurvivalHacks", "#OffGrid", "#HomeResilience", "#EmergencyKit",
+      "#HomeFixTips", "#SurviveDIY", "#SelfSufficient", "#PreppingTips", "#EmergencyTools"
+    ],
+    "budget": [
+      "#BudgetDIY", "#SaveMoney", "#FrugalLiving", "#CheapRepair", "#AffordableDIY",
+      "#MoneyHacks", "#DIYSavings", "#HomeOnABudget", "#CostSaving", "#BudgetHome",
+      "#HomeFixTips", "#DIYForLess", "#SaveOnRepairs", "#ThriftyHome", "#FrugalDIY"
+    ]
+  },
+  "posting_schedule": {
+    "timezone_note": "Times shown in both US Eastern (ET) and Central European (CET)",
+    "slots_per_day": 3,
+    "schedule": {
+      "monday":    ["07:00 ET / 13:00 CET", "12:00 ET / 18:00 CET", "19:00 ET / 01:00 CET+1"],
+      "tuesday":   ["07:00 ET / 13:00 CET", "12:00 ET / 18:00 CET", "19:00 ET / 01:00 CET+1"],
+      "wednesday": ["07:00 ET / 13:00 CET", "12:00 ET / 18:00 CET", "19:00 ET / 01:00 CET+1"],
+      "thursday":  ["07:00 ET / 13:00 CET", "12:00 ET / 18:00 CET", "19:00 ET / 01:00 CET+1"],
+      "friday":    ["07:00 ET / 13:00 CET", "12:00 ET / 18:00 CET", "20:00 ET / 02:00 CET+1"],
+      "saturday":  ["09:00 ET / 15:00 CET", "13:00 ET / 19:00 CET", "20:00 ET / 02:00 CET+1"],
+      "sunday":    ["09:00 ET / 15:00 CET", "13:00 ET / 19:00 CET", "20:00 ET / 02:00 CET+1"]
+    },
+    "optimal_days": ["tuesday", "wednesday", "thursday"],
+    "notes": "Peak engagement: Tue–Thu 12:00–14:00 ET. Weekend mornings strong for DIY content."
+  }
+}

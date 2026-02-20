@@ -1,0 +1,53 @@
+{
+  "bio": "🔧 Home repairs made easy | DIY tips, quick fixes & survival skills | New posts daily ⬇️",
+  "bio_note": "150 chars max – current length: 89 chars",
+  "highlight_covers": [
+    {
+      "name": "Fixes",
+      "description": "Step-by-step repair tutorials for common household problems – plumbing, electrical, furniture, and more.",
+      "icon_suggestion": "🔧"
+    },
+    {
+      "name": "Tips",
+      "description": "Pro handyman tips and tricks to make every repair faster, cleaner, and longer-lasting.",
+      "icon_suggestion": "💡"
+    },
+    {
+      "name": "Tools",
+      "description": "Tool guides, reviews, and buying advice – what to get, what to skip, and how to use each one.",
+      "icon_suggestion": "🪛"
+    },
+    {
+      "name": "Survival",
+      "description": "Emergency preparedness, survival toolkit builds, and essential skills every homeowner needs.",
+      "icon_suggestion": "🛡️"
+    }
+  ],
+  "default_reel_description_template": "🔧 {title}\n\n{hook_line}\n\n✅ Works for: {use_cases}\n📦 Materials: {materials}\n⏱️ Time: {duration} | 💰 Cost: {cost}\n\n💾 Save this for later!\n🔔 Follow for daily home repair tips\n\n{hashtag_set}",
+  "hashtag_sets": {
+    "diy_repair": [
+      "#HomeRepair", "#DIY", "#FixItYourself", "#HandymanTips", "#HomeImprovement",
+      "#RepairTutorial", "#QuickFix", "#HomeHacks", "#DIYRepair", "#BudgetDIY",
+      "#HomeFixTips", "#HowToFix", "#HomeOwner", "#FixYourHome", "#RepairGuide",
+      "#DIYHome", "#HomeMaintenance", "#HomeProjects", "#CraftyHome", "#MakeItWork",
+      "#RepairLife", "#ToolTime", "#SkillUp", "#FixFirst", "#DIYCommunity",
+      "#HomeHelper", "#WeekendDIY", "#HomeRenovation", "#FixAndFlip", "#HandyHome"
+    ],
+    "survival": [
+      "#SurvivalSkills", "#EmergencyPrep", "#HomeEmergency", "#SurvivalTips", "#Preparedness",
+      "#EmergencyRepair", "#SurvivalHacks", "#OffGrid", "#HomeResilience", "#EmergencyKit",
+      "#HomeFixTips", "#SurviveDIY", "#SelfSufficient", "#PreppingTips", "#EmergencyTools",
+      "#SurvivalGuide", "#Prepper", "#BugOutBag", "#HomeDefense", "#ReadyForAnything",
+      "#SurvivalMode", "#PrepperLife", "#CrisisReady", "#HomePrepper", "#UrbanSurvival",
+      "#DisasterPrep", "#EmergencyPlanning", "#StaySafe", "#HomeReady", "#SurvivalFirst"
+    ],
+    "budget": [
+      "#BudgetDIY", "#SaveMoney", "#FrugalLiving", "#CheapRepair", "#AffordableDIY",
+      "#MoneyHacks", "#DIYSavings", "#HomeOnABudget", "#CostSaving", "#BudgetHome",
+      "#HomeFixTips", "#DIYForLess", "#SaveOnRepairs", "#ThriftyHome", "#FrugalDIY",
+      "#MoneyTips", "#BudgetFriendly", "#SmartSpending", "#SaveEveryDollar", "#FrugalHacks",
+      "#BudgetLiving", "#SmartHome", "#AffordableHome", "#DIYOnACheap", "#SaveMoreLiveMore",
+      "#HomeSaving", "#StretchYourBudget", "#MoneyWise", "#BudgetGoals", "#CostEffective"
+    ]
+  }
+}
