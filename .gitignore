@@ -229,3 +229,6 @@ output/*.csv
 output/*.json
 output/mockups/*.html
 output/covers/
+
+# Node.js
+claw-autonomy-bridge/node_modules/
