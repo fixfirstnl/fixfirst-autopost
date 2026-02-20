@@ -48,7 +48,7 @@ function getStatus() {
     pending: queue.length,
     running: running.size,
     queue: queue.slice(0, 10),
-    running: Array.from(running.values())
+    runningTasks: Array.from(running.values())
   };
 }
 
