@@ -217,3 +217,8 @@ logs/*.log
 
 # Manifest with real paths
 manifest.json
+
+# Generated e-book output (run content/build_ebook.py to regenerate)
+output/*.md
+output/*.html
+output/*.pdf

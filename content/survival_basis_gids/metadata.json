@@ -1,0 +1,81 @@
+{
+  "title": "Survival Basis Gids NL",
+  "subtitle": "Compleet Handboek voor Zelfvoorzienend Leven en Noodvoorbereiding",
+  "author": "FixFirst NL",
+  "publisher": "FixFirst NL",
+  "language": "nl",
+  "isbn_placeholder": "ISBN-PLACEHOLDER-000",
+  "description": "De Survival Basis Gids NL is het meest praktische en complete Nederlandstalige handboek voor iedereen die zelfvoorzienend wil leven of zich wil voorbereiden op noodsituaties. Van waterzuivering zonder stroom tot off-grid communicatie: dit boek geeft je de kennis en vaardigheden om elke crisis aan te kunnen.",
+  "long_description": "De Survival Basis Gids NL behandelt alle essentiële onderwerpen voor zelfvoorzienend leven en noodvoorbereiding: waterzuivering zonder elektriciteit, voedsel bewaren zonder koeling, noodstroom opwekken, eerste hulp essentials, essentieel gereedschap, off-grid communicatie, onderdak en isolatie, en een complete survival checklist. Elk hoofdstuk bevat praktische samenvattingen, stap-voor-stap instructies, en actiegerichte checklists. Geschreven in het Nederlands voor de Nederlandse en Vlaamse lezer.",
+  "keywords": [
+    "survival",
+    "preppen",
+    "zelfvoorzienend",
+    "noodvoorbereiding",
+    "off-grid",
+    "waterzuivering",
+    "voedsel bewaren",
+    "noodstroom",
+    "eerste hulp",
+    "crisisvoorbereiding",
+    "DIY",
+    "Nederlands",
+    "Nederland"
+  ],
+  "target_audience": "Nederlandse preppers, zelfvoorzienend leven enthousiastelingen, thuiswerkers, gezinnen die zich willen voorbereiden op noodsituaties",
+  "price_eur": 14.97,
+  "currency": "EUR",
+  "version": "1.0.0",
+  "date_created": "2026-02-20",
+  "cover_image_placeholder": "cover/survival_basis_gids_cover.jpg",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "chapters/01_water_zuivering.md",
+      "title": "Waterzuivering Zonder Elektriciteit",
+      "words_target": 3000
+    },
+    {
+      "number": 2,
+      "file": "chapters/02_voedsel_bewaren.md",
+      "title": "Voedsel Bewaren Zonder Koeling",
+      "words_target": 3000
+    },
+    {
+      "number": 3,
+      "file": "chapters/03_noodstroom.md",
+      "title": "Noodstroom — Zelf Energie Opwekken en Opslaan",
+      "words_target": 3000
+    },
+    {
+      "number": 4,
+      "file": "chapters/04_eerste_hulp.md",
+      "title": "Eerste Hulp Essentials — Zorgen voor Gewonden Zonder Professionele Hulp",
+      "words_target": 3000
+    },
+    {
+      "number": 5,
+      "file": "chapters/05_gereedschap.md",
+      "title": "Essentieel Gereedschap voor Zelfvoorzienend Leven",
+      "words_target": 2000
+    },
+    {
+      "number": 6,
+      "file": "chapters/06_communicatie.md",
+      "title": "Off-Grid Communicatie — Verbonden Blijven Zonder Internet of Telefoonnet",
+      "words_target": 2000
+    },
+    {
+      "number": 7,
+      "file": "chapters/07_onderdak.md",
+      "title": "Onderdak en Isolatie DIY — Jezelf Beschermen tegen de Elementen",
+      "words_target": 3000
+    },
+    {
+      "number": 8,
+      "file": "chapters/08_checklist.md",
+      "title": "Complete Survival Checklist — Jouw Persoonlijk Noodplan",
+      "words_target": 2000
+    }
+  ]
+}
