@@ -1,6 +1,5 @@
 'use strict';
 const { getContentQueue, updateContentHubItem } = require('../modules/notion/update-content-hub');
-const { markTaskDone } = require('../modules/notion/update-tasks');
 const { postToAll } = require('./auto-poster');
 const { sendMessage } = require('../modules/telegram/status-reporter');
 

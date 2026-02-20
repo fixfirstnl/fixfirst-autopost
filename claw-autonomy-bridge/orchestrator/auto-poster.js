@@ -20,7 +20,7 @@ async function postToAll({ videoPath, caption, imageUrl, title, hashtags = [], a
   await Promise.allSettled(tasks);
 
   const successCount = Object.values(results).filter(r => r.success).length;
-  await sendMessage(`✅ Auto-poster: ${successCount}/${Object.keys(results).length} platforms successful\nCaption: ${caption.slice(0, 100)}`).catch(() => {});
+  await sendMessage(`✅ Auto-poster: ${successCount}/${Object.keys(results).length} platforms successful\nCaption: ${caption.slice(0, 100)}`).catch(err => console.error('[auto-poster] Failed to send notification:', err.message));
 
   return results;
 }

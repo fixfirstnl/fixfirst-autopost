@@ -15,9 +15,13 @@ function createClient() {
 
   client.interceptors.response.use(
     res => res,
-    err => {
+    (err) => {
       const status = err.response ? err.response.status : null;
-      if (status === 429) return new Promise(r => setTimeout(r, 30000)).then(() => client.request(err.config));
+      const retryCount = (err.config.__retryCount || 0);
+      if (status === 429 && retryCount < 3) {
+        err.config.__retryCount = retryCount + 1;
+        return new Promise(r => setTimeout(r, 30000)).then(() => client.request(err.config));
+      }
       return Promise.reject(err);
     }
   );

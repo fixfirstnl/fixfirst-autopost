@@ -9,9 +9,11 @@ function start() {
 
   // Daily routine at 08:00
   cron.schedule('0 8 * * *', async () => {
-    const { runDailyRoutine } = require('./auto-poster');
+    const { runContentPush } = require('./content-pipeline');
+    const { runAffiliatePush } = require('./affiliate-optimizer');
     try {
-      if (typeof runDailyRoutine === 'function') await runDailyRoutine();
+      await runContentPush();
+      await runAffiliatePush();
     } catch (err) {
       console.error('[scheduler] daily-routine error:', err.message);
     }

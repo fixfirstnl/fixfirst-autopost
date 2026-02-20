@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+const PORT = parseInt(process.env.PORT || '3006', 10);
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
@@ -18,7 +20,7 @@ app.get('/api/health', async (req, res) => {
   res.json({
     status: 'ok',
     service: 'claw-autonomy-bridge',
-    port: process.env.PORT || 3006,
+    port: PORT,
     uptime: process.uptime(),
     health,
     queue,
@@ -26,7 +28,6 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
-const PORT = parseInt(process.env.PORT || '3006', 10);
 app.listen(PORT, () => {
   console.log(`[claw-autonomy-bridge] Running on port ${PORT}`);
 
