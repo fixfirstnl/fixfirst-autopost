@@ -1,0 +1,52 @@
+name: Deploy claw-autonomy-bridge
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'claw-autonomy-bridge/**'
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        id: deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/fixfirst-autopost
+            git pull origin main
+            cd claw-autonomy-bridge
+            npm install --production
+            pm2 restart claw-bridge || pm2 start ecosystem.config.js
+            sleep 3
+            curl -f http://localhost:3006/health || { echo 'Health check failed'; exit 1; }
+
+      - name: Notify Telegram on success
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="✅ *claw-autonomy-bridge deployed successfully*%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}" \
+            -d parse_mode="Markdown"
+
+      - name: Notify Telegram on failure
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="❌ *claw-autonomy-bridge deployment FAILED*%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}" \
+            -d parse_mode="Markdown"

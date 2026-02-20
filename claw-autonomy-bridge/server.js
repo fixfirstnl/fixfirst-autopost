@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes);
 
+const healthRouter = require('./health');
+app.use(healthRouter);
+
 const { checkHealth, getLastHealth } = require('./orchestrator/health-monitor');
 const { getStatus } = require('./orchestrator/task-queue');
 
