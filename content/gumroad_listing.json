@@ -1,0 +1,56 @@
+{
+  "product_name": "Survival Basis Gids NL",
+  "product_name_short": "Survival Basis Gids",
+  "tagline": "Het complete Nederlandstalige handboek voor zelfvoorzienend leven en noodvoorbereiding",
+  "price": 14.97,
+  "currency": "EUR",
+  "cover_image_placeholder": "cover/survival_basis_gids_cover.jpg",
+  "product_type": "ebook",
+  "file_format": ["PDF", "HTML", "Markdown"],
+  "tags": [
+    "survival",
+    "preppen",
+    "zelfvoorzienend leven",
+    "noodvoorbereiding",
+    "off-grid",
+    "waterzuivering",
+    "voedsel bewaren",
+    "noodstroom",
+    "eerste hulp",
+    "crisisvoorbereiding",
+    "DIY",
+    "Dutch",
+    "Nederlands",
+    "Nederland",
+    "Vlaanderen"
+  ],
+  "description_nl": "Wil je voorbereid zijn op een stroomstoring, overstroming of langdurige crisis? De Survival Basis Gids NL is het meest complete Nederlandstalige handboek voor zelfvoorzienend leven en noodvoorbereiding.\n\nMet 8 uitgebreide hoofdstukken leer je precies wat je moet weten en doen:\n\n✅ Waterzuivering zonder stroom – maak elke waterbron veilig drinkbaar\n✅ Voedsel bewaren zonder koeling – fermenteren, wecken, drogen en zouten\n✅ Noodstroom opwekken – zonnepanelen, generatoren en energiebesparing\n✅ Eerste hulp essentials – red levens wanneer hulpdiensten er niet zijn\n✅ Essentieel gereedschap – wat je écht nodig hebt (en wat niet)\n✅ Off-grid communicatie – portofoons, mesh-netwerken en noodradio\n✅ Onderdak en isolatie DIY – je woning winterbestendig en noodonderdak bouwen\n✅ Complete survival checklist – jouw persoonlijk actieplan\n\nElk hoofdstuk bevat:\n• Praktische samenvatting die je direct kunt toepassen\n• Stap-voor-stap instructies zonder technische voorkennis\n• Prioriteitsgestuurde checklists (kritiek → belangrijk → aanvullend)\n• DIY-oplossingen voor elk budget\n\nGeschreven voor de Nederlandse en Vlaamse lezer. Praktisch, no-nonsense, en direct toepasbaar — geen onnodige theorie.\n\nVoor wie is dit boek?\n• Gezinnen die zich willen voorbereiden op noodsituaties\n• Enthousiastelingen van zelfvoorzienend leven\n• Outdoor-liefhebbers en kampeerders\n• Mensen die minder afhankelijk willen zijn van het systeem\n\nBestel nu en download direct. Begin vandaag met je voorbereiding.",
+  "description_short_nl": "Het complete Nederlandstalige handboek voor noodvoorbereiding. 8 hoofdstukken over water, voedsel, stroom, eerste hulp, gereedschap, communicatie en onderdak. Praktisch, no-nonsense, direct toepasbaar.",
+  "seo_title": "Survival Basis Gids NL – Compleet Handboek Noodvoorbereiding & Zelfvoorzienend Leven",
+  "seo_description": "Download de Survival Basis Gids NL: het meest complete Nederlandstalige e-book over waterzuivering, voedsel bewaren, noodstroom, eerste hulp, off-grid communicatie en onderdak. Direct toepasbaar, inclusief checklists.",
+  "seo_keywords": [
+    "survival gids nederland",
+    "noodvoorbereiding nederland",
+    "zelfvoorzienend leven boek",
+    "preppen nederland",
+    "survival handboek nl",
+    "waterzuivering zonder stroom",
+    "voedsel bewaren crisis",
+    "noodstroom thuis",
+    "off-grid nederland",
+    "crisisvoorbereiding gezin"
+  ],
+  "platforms": {
+    "gumroad": {
+      "url_placeholder": "https://fixfirstnl.gumroad.com/l/survival-basis-gids-nl",
+      "suggested_cover_size": "1280x1600",
+      "suggested_categories": ["Books & Comics", "Educational"]
+    },
+    "digistore24": {
+      "url_placeholder": "https://www.digistore24.com/product/PLACEHOLDER",
+      "suggested_categories": ["Home & Garden", "Self-Sufficiency"]
+    }
+  },
+  "upsell_placeholder": "Survival Premium Pakket NL – Inclusief receptenboek, zaadpakketten en video-cursus",
+  "refund_policy": "30 dagen niet-goed-geld-terug garantie"
+}
