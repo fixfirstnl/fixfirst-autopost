@@ -5,14 +5,6 @@ import time
 import logging
 from typing import Optional
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-
 from utils import build_caption
 
 logger = logging.getLogger("autopost.tiktok")
@@ -21,8 +13,13 @@ TIKTOK_UPLOAD_URL = "https://www.tiktok.com/creator-center/upload"
 CONFIRMATION_WAIT_SECONDS = 5
 
 
-def _build_driver(headless: bool = True) -> webdriver.Chrome:
+def _build_driver(headless: bool = True) -> "webdriver.Chrome":
     """Initialise a Chrome WebDriver."""
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from webdriver_manager.chrome import ChromeDriverManager
+
     options = Options()
     if headless:
         options.add_argument("--headless=new")
@@ -34,7 +31,7 @@ def _build_driver(headless: bool = True) -> webdriver.Chrome:
     return webdriver.Chrome(service=service, options=options)
 
 
-def _inject_session_cookie(driver: webdriver.Chrome, session_id: str) -> None:
+def _inject_session_cookie(driver: object, session_id: str) -> None:
     """Navigate to TikTok and inject the session cookie."""
     driver.get("https://www.tiktok.com")
     driver.add_cookie(
@@ -75,6 +72,10 @@ def upload_video(
     if dry_run:
         logger.info("[DRY-RUN] TikTok: would upload '%s' with caption: %s", video_path, full_caption)
         return
+
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
 
     driver = _build_driver()
     try:

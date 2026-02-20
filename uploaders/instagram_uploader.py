@@ -5,8 +5,6 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from instagrapi import Client
-from instagrapi.exceptions import LoginRequired
 from utils import build_caption
 
 logger = logging.getLogger("autopost.instagram")
@@ -14,8 +12,11 @@ logger = logging.getLogger("autopost.instagram")
 SESSION_FILE = "instagram_session.json"
 
 
-def _get_client() -> Client:
+def _get_client() -> object:
     """Return an authenticated instagrapi Client, reusing a saved session if possible."""
+    from instagrapi import Client
+    from instagrapi.exceptions import LoginRequired
+
     username = os.getenv("IG_USERNAME")
     password = os.getenv("IG_PASSWORD")
 

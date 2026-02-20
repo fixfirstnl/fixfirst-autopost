@@ -4,21 +4,18 @@ import os
 import logging
 from typing import Optional
 
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-import googleapiclient.errors
-
 logger = logging.getLogger("autopost.youtube")
 
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 TOKEN_FILE = "youtube_token.json"
 
 
-def _get_credentials(client_secret_file: str) -> Credentials:
+def _get_credentials(client_secret_file: str) -> object:
     """Return valid OAuth2 credentials, refreshing or re-authorising as needed."""
+    from google.oauth2.credentials import Credentials
+    from google.auth.transport.requests import Request
+    from google_auth_oauthlib.flow import InstalledAppFlow
+
     creds: Optional[Credentials] = None
 
     if os.path.exists(TOKEN_FILE):
@@ -74,6 +71,9 @@ def upload_video(
 
     if not os.path.isfile(client_secret_file):
         raise FileNotFoundError(f"YouTube client secret not found: {client_secret_file}")
+
+    from googleapiclient.discovery import build
+    from googleapiclient.http import MediaFileUpload
 
     creds = _get_credentials(client_secret_file)
     youtube = build("youtube", "v3", credentials=creds)
