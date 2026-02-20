@@ -1,0 +1,52 @@
+{
+  "channel_name": "HomeFixTips",
+  "channel_description": "Welcome to HomeFixTips – your go-to channel for practical home repair tutorials, emergency fixes, and budget-friendly DIY projects. Whether you're tackling a leaky faucet, a broken cabinet, or prepping a survival toolkit, we break every job down into simple, step-by-step instructions anyone can follow. New videos every week covering plumbing basics, electrical safety, furniture repair, painting, tiling, and much more. Save money, build confidence, and fix it yourself! Subscribe now and join thousands of homeowners who've taken control of their home maintenance. From quick 5-minute fixes to full weekend renovation projects – HomeFixTips has you covered. Tools explained, materials listed, costs estimated. Real repairs, real results.",
+  "channel_keywords": [
+    "home repair", "DIY", "fix it yourself", "home maintenance", "plumbing repair",
+    "electrical DIY", "cabinet repair", "furniture fix", "wall repair", "tile repair",
+    "budget DIY", "cheap home repair", "easy home fix", "beginner DIY", "home improvement",
+    "how to fix", "home hacks", "repair tutorial", "handyman tips", "leaky faucet",
+    "broken hinge", "drywall repair", "paint walls", "caulking tips", "door repair",
+    "window repair", "floor repair", "roof leak fix", "emergency repair", "survival skills",
+    "emergency toolkit", "home safety", "weatherproofing", "insulation DIY", "basement repair",
+    "garage repair", "fence repair", "deck repair", "gutter cleaning", "pipe repair",
+    "toilet repair", "sink repair", "shower repair", "kitchen DIY", "bathroom repair",
+    "quick fix", "weekend project", "power tools", "hand tools", "tool guide",
+    "home tips", "renovation tips", "HomeFixTips"
+  ],
+  "default_upload_settings": {
+    "title_template": "{topic} – Step-by-Step Home Repair Guide #Shorts",
+    "description_template": "🔧 {topic}\n\nIn this video we show you exactly how to {action} – fast, cheap, and without calling a contractor.\n\n📋 What you need:\n{materials_list}\n\n⏱️ Time needed: {duration}\n💰 Estimated cost: {cost}\n\n✅ Step-by-step:\n{steps}\n\n🔔 Subscribe for more home repair tips: https://youtube.com/@HomeFixTips\n📌 Save this video for when you need it!\n\n#HomeRepair #DIY #FixItYourself #HomeImprovement #HomeFixTips #BudgetDIY #QuickFix #HandymanTips",
+    "default_tags": [
+      "home repair", "DIY", "fix it yourself", "home improvement", "handyman",
+      "budget DIY", "quick fix", "how to", "tutorial", "repair guide",
+      "home maintenance", "HomeFixTips"
+    ],
+    "category_id": "26",
+    "privacy_status": "public",
+    "made_for_kids": false,
+    "language": "en"
+  },
+  "playlist_structure": [
+    {
+      "name": "Quick Fixes",
+      "description": "Fast home repairs you can do in under 30 minutes. No experience needed – just the right steps.",
+      "tags": ["quick fix", "fast repair", "easy DIY", "home hacks"]
+    },
+    {
+      "name": "Emergency Repairs",
+      "description": "When things break unexpectedly: urgent fixes for leaks, electrical issues, broken doors, and more.",
+      "tags": ["emergency repair", "urgent fix", "home emergency", "repair now"]
+    },
+    {
+      "name": "Budget DIY",
+      "description": "Save hundreds on repairs by doing it yourself. Materials under €25, results that last.",
+      "tags": ["budget DIY", "cheap repair", "save money", "frugal home", "affordable fix"]
+    },
+    {
+      "name": "Survival Skills",
+      "description": "Essential skills every homeowner should know: emergency prep, basic utilities, and self-sufficiency.",
+      "tags": ["survival skills", "emergency prep", "homeowner basics", "self sufficiency", "preparedness"]
+    }
+  ]
+}
