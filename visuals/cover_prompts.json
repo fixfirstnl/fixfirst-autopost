@@ -1,0 +1,107 @@
+{
+  "products": [
+    {
+      "id": "survival_basis_gids_nl",
+      "title": "Survival Basis Gids NL",
+      "theme": "dark green / tactical",
+      "prompts": {
+        "16_9": "Photorealistic tactical survival guide book cover, dark forest green background with subtle hex-camouflage texture, bold Dutch typography 'Survival Basis Gids', military-style compass and survival tools silhouette in foreground, golden accent highlights, dramatic moody lighting, ultra-sharp 4K render, 16:9 aspect ratio, Midjourney v6 style --ar 16:9 --style raw --q 2",
+        "1_1": "Photorealistic tactical survival guide book cover, dark forest green background with subtle hex-camouflage texture, bold Dutch typography 'Survival Basis Gids', military-style compass and survival tools silhouette in foreground, golden accent highlights, dramatic moody lighting, ultra-sharp 4K render, square format --ar 1:1 --style raw --q 2"
+      },
+      "text_overlay": {
+        "headline": "Survival Basis Gids NL",
+        "subheadline": "Alles wat je moet weten om te overleven",
+        "font_suggestion": "Bebas Neue Bold or Impact",
+        "headline_color": "#F5C518",
+        "subheadline_color": "#FFFFFF",
+        "background_overlay": "rgba(0, 40, 0, 0.45)",
+        "badge": "BESTSELLER",
+        "badge_color": "#FF4500"
+      }
+    },
+    {
+      "id": "emergency_toolkit_pro",
+      "title": "Emergency Toolkit Pro",
+      "theme": "red / urgent",
+      "prompts": {
+        "16_9": "Photorealistic emergency preparedness guide cover, deep red and charcoal background, bold warning-style typography 'Emergency Toolkit Pro', first-aid cross symbol, flashlight beam cutting through dark, urgent emergency atmosphere, high-contrast graphic design aesthetic, professional product mockup, 16:9 aspect ratio --ar 16:9 --style raw --q 2",
+        "1_1": "Photorealistic emergency preparedness guide cover, deep red and charcoal background, bold warning-style typography 'Emergency Toolkit Pro', first-aid cross symbol, flashlight beam cutting through dark, urgent emergency atmosphere, high-contrast graphic design aesthetic, professional product mockup, square format --ar 1:1 --style raw --q 2"
+      },
+      "text_overlay": {
+        "headline": "Emergency Toolkit Pro",
+        "subheadline": "Jouw complete noodpakket gids",
+        "font_suggestion": "Montserrat ExtraBold or Oswald Bold",
+        "headline_color": "#FFFFFF",
+        "subheadline_color": "#FFD700",
+        "background_overlay": "rgba(180, 0, 0, 0.50)",
+        "badge": "NIEUW",
+        "badge_color": "#CC0000"
+      }
+    },
+    {
+      "id": "weekend_klusplanner",
+      "title": "Weekend Klusplanner",
+      "theme": "blue / organized",
+      "prompts": {
+        "16_9": "Photorealistic home improvement planner book cover, clean sky-blue and white colour palette, organised grid layout with checklist icons, Dutch text 'Weekend Klusplanner', blueprint-style technical drawings in background, modern minimalist design, bright professional lighting, flat-design elements mixed with 3D tools, 16:9 aspect ratio --ar 16:9 --style raw --q 2",
+        "1_1": "Photorealistic home improvement planner book cover, clean sky-blue and white colour palette, organised grid layout with checklist icons, Dutch text 'Weekend Klusplanner', blueprint-style technical drawings in background, modern minimalist design, bright professional lighting, flat-design elements mixed with 3D tools, square format --ar 1:1 --style raw --q 2"
+      },
+      "text_overlay": {
+        "headline": "Weekend Klusplanner",
+        "subheadline": "Plan & klaar je klussen slim",
+        "font_suggestion": "Raleway Bold or Poppins SemiBold",
+        "headline_color": "#1A3A6B",
+        "subheadline_color": "#0066CC",
+        "background_overlay": "rgba(0, 102, 204, 0.30)",
+        "badge": "GRATIS UPDATE",
+        "badge_color": "#0066CC"
+      }
+    },
+    {
+      "id": "budget_bespaar_gids",
+      "title": "Budget & Bespaar Gids",
+      "theme": "green / money",
+      "prompts": {
+        "16_9": "Photorealistic personal finance and savings guide cover, fresh money-green gradient background, euro coin and banknote subtle watermarks, bold Dutch headline 'Budget & Bespaar Gids', piggy bank icon, upward trending graph, clean and trustworthy financial branding, professional studio render, 16:9 aspect ratio --ar 16:9 --style raw --q 2",
+        "1_1": "Photorealistic personal finance and savings guide cover, fresh money-green gradient background, euro coin and banknote subtle watermarks, bold Dutch headline 'Budget & Bespaar Gids', piggy bank icon, upward trending graph, clean and trustworthy financial branding, professional studio render, square format --ar 1:1 --style raw --q 2"
+      },
+      "text_overlay": {
+        "headline": "Budget & Bespaar Gids",
+        "subheadline": "Bespaar honderden euro's per maand",
+        "font_suggestion": "Lato Bold or Source Sans Pro Bold",
+        "headline_color": "#FFFFFF",
+        "subheadline_color": "#E8F5E9",
+        "background_overlay": "rgba(27, 94, 32, 0.40)",
+        "badge": "TOP VERKOPER",
+        "badge_color": "#2E7D32"
+      }
+    },
+    {
+      "id": "diy_keukenkast_reparatie_gids",
+      "title": "DIY Keukenkast Reparatie Gids",
+      "theme": "warm wood",
+      "prompts": {
+        "16_9": "Photorealistic DIY kitchen cabinet repair guide cover, warm oak wood grain texture background, cozy workshop atmosphere, Dutch text 'DIY Keukenkast Reparatie Gids', artisan hand tools (chisel, hammer, screwdriver) arranged neatly, warm amber lighting, natural wood tones with cream accents, professional craft book aesthetic, 16:9 aspect ratio --ar 16:9 --style raw --q 2",
+        "1_1": "Photorealistic DIY kitchen cabinet repair guide cover, warm oak wood grain texture background, cozy workshop atmosphere, Dutch text 'DIY Keukenkast Reparatie Gids', artisan hand tools (chisel, hammer, screwdriver) arranged neatly, warm amber lighting, natural wood tones with cream accents, professional craft book aesthetic, square format --ar 1:1 --style raw --q 2"
+      },
+      "text_overlay": {
+        "headline": "DIY Keukenkast Reparatie Gids",
+        "subheadline": "Repareer als een professional",
+        "font_suggestion": "Playfair Display Bold or Merriweather Bold",
+        "headline_color": "#3E2723",
+        "subheadline_color": "#5D4037",
+        "background_overlay": "rgba(62, 39, 35, 0.25)",
+        "badge": "STAP VOOR STAP",
+        "badge_color": "#795548"
+      }
+    }
+  ],
+  "global_notes": {
+    "image_generator": "Compatible with Midjourney v6 and DALL-E 3",
+    "recommended_resolution": "2560x1440 (16:9) | 1080x1080 (1:1)",
+    "gumroad_cover_size": "1280x720 minimum, 1920x1080 recommended",
+    "etsy_listing_size": "2000x2000 minimum (square)",
+    "file_format": "PNG or JPEG, max 20 MB",
+    "dalle3_note": "For DALL-E 3, append 'No text on image; text will be added in post-production' to each prompt"
+  }
+}

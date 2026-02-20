@@ -1,0 +1,167 @@
+{
+  "platforms": {
+    "instagram": {
+      "nl_audience": {
+        "weekdays": ["07:30", "12:00", "19:00"],
+        "weekends": ["09:00", "13:00", "20:00"],
+        "best_days": ["Tuesday", "Wednesday", "Friday"],
+        "notes": "NL audience peaks during lunch and evening commute"
+      },
+      "us_audience": {
+        "weekdays": ["08:00", "12:00", "17:00"],
+        "weekends": ["10:00", "14:00", "19:00"],
+        "timezone": "EST",
+        "best_days": ["Tuesday", "Thursday", "Saturday"],
+        "notes": "Post in EST; morning before work, lunch, and early evening"
+      }
+    },
+    "tiktok": {
+      "nl_audience": {
+        "weekdays": ["07:00", "13:00", "21:00"],
+        "weekends": ["10:00", "14:00", "22:00"],
+        "best_days": ["Tuesday", "Thursday", "Saturday"],
+        "notes": "TikTok NL – evenings outperform mornings significantly"
+      },
+      "us_audience": {
+        "weekdays": ["07:00", "11:00", "19:00"],
+        "weekends": ["09:00", "15:00", "21:00"],
+        "timezone": "EST",
+        "best_days": ["Tuesday", "Friday", "Saturday"],
+        "notes": "US TikTok – entertainment window 7–11 PM EST drives most virality"
+      }
+    },
+    "pinterest": {
+      "nl_audience": {
+        "weekdays": ["08:00", "12:00", "21:00"],
+        "weekends": ["10:00", "15:00", "21:00"],
+        "best_days": ["Saturday", "Sunday", "Friday"],
+        "notes": "Pinterest has a longer content lifespan – post 3–5× per day"
+      },
+      "us_audience": {
+        "weekdays": ["08:00", "14:00", "21:00"],
+        "weekends": ["09:00", "16:00", "21:00"],
+        "timezone": "EST",
+        "best_days": ["Saturday", "Sunday", "Friday"],
+        "notes": "US Pinterest peaks on weekends; DIY and home improvement top categories"
+      }
+    },
+    "youtube_shorts": {
+      "nl_audience": {
+        "weekdays": ["09:00", "17:00", "20:00"],
+        "weekends": ["10:00", "14:00", "19:00"],
+        "best_days": ["Monday", "Wednesday", "Saturday"]
+      },
+      "us_audience": {
+        "weekdays": ["09:00", "15:00", "19:00"],
+        "weekends": ["11:00", "15:00", "20:00"],
+        "timezone": "EST",
+        "best_days": ["Tuesday", "Thursday", "Saturday"]
+      }
+    }
+  },
+  "content_mix": {
+    "ratios": {
+      "diy_home_repair": 0.60,
+      "survival_preparedness": 0.25,
+      "budget_finance": 0.15
+    },
+    "notes": "60/25/15 split targets the broadest NL home-owner audience while maintaining survival and budget niches",
+    "weekly_post_plan": {
+      "monday": ["diy_home_repair"],
+      "tuesday": ["diy_home_repair", "survival_preparedness"],
+      "wednesday": ["budget_finance", "diy_home_repair"],
+      "thursday": ["diy_home_repair", "survival_preparedness"],
+      "friday": ["diy_home_repair", "budget_finance"],
+      "saturday": ["diy_home_repair", "survival_preparedness"],
+      "sunday": ["diy_home_repair"]
+    }
+  },
+  "hashtag_rotation": {
+    "strategy": "Rotate through 3 sets weekly to prevent Instagram shadowban",
+    "rotation_period_days": 7,
+    "sets": {
+      "set_a": {
+        "diy": ["#diy", "#klusser", "#thuisverbouwing", "#verbouwing", "#zelfmaken", "#kluswerk", "#bouwfix", "#fixfirst"],
+        "survival": ["#survival", "#prepper", "#noodpakket", "#zelfredzaamheid", "#overleven", "#buitenleven", "#outdoorlife", "#fixfirst"],
+        "budget": ["#besparen", "#budgettips", "#financientips", "#geldtips", "#zuinig", "#spaartips", "#goedkoperwonen", "#fixfirst"]
+      },
+      "set_b": {
+        "diy": ["#diyproject", "#klussenthuis", "#wooninspo", "#wonentips", "#huishouden", "#handigeman", "#reparatie", "#klusadvies"],
+        "survival": ["#noodsituatie", "#preparedness", "#noodgeval", "#overleving", "#survivalskills", "#dutchprepper", "#crisisplan", "#noodkist"],
+        "budget": ["#slimbesparen", "#huishoudbudget", "#geldbeheer", "#financieelvrij", "#schuldenvrij", "#spaargeld", "#eurowise", "#nederlandsparen"]
+      },
+      "set_c": {
+        "diy": ["#renovatie", "#huisverbetering", "#interieurklus", "#keukenrenovatie", "#badkamerrenovatie", "#schilderwerk", "#tegels", "#klustips"],
+        "survival": ["#crisisvoorbereiding", "#72uurspakket", "#rampenplan", "#zelfvoorzienend", "#offgrid", "#wateropslag", "#voedselbuffer", "#ehbo"],
+        "budget": ["#energiebesparing", "#boodschappenlijst", "#budgetkoken", "#goedkoopeten", "#uitverkoop", "#tweedehands", "#slimkopen", "#korting"]
+      }
+    },
+    "max_hashtags_per_post": {
+      "instagram": 30,
+      "tiktok": 5,
+      "pinterest": 20
+    },
+    "placement": {
+      "instagram": "First comment (keeps caption clean; prevents shadowban)",
+      "tiktok": "Inline at end of caption",
+      "pinterest": "Inline in pin description"
+    }
+  },
+  "cta_rotation": {
+    "strategy": "Rotate CTAs daily to improve engagement variety and algorithm signals",
+    "ctas": [
+      {
+        "type": "link_in_bio",
+        "nl": "📎 Volledige gids → link in bio",
+        "en": "📎 Full guide → link in bio",
+        "use_on": ["instagram", "tiktok"]
+      },
+      {
+        "type": "follow",
+        "nl": "🔔 Volg ons voor dagelijkse klusstips!",
+        "en": "🔔 Follow for daily DIY tips!",
+        "use_on": ["instagram", "tiktok", "pinterest"]
+      },
+      {
+        "type": "save",
+        "nl": "💾 Sla dit op voor later – je hebt het nodig!",
+        "en": "💾 Save this for later – you'll need it!",
+        "use_on": ["instagram", "pinterest"]
+      },
+      {
+        "type": "share",
+        "nl": "↗️ Stuur dit door naar iemand die dit kan gebruiken",
+        "en": "↗️ Share this with someone who needs it",
+        "use_on": ["instagram", "tiktok"]
+      },
+      {
+        "type": "comment",
+        "nl": "💬 Welke klus wil jij als volgende tackelen? Reactie hieronder!",
+        "en": "💬 Which project are you tackling next? Comment below!",
+        "use_on": ["instagram", "tiktok", "youtube"]
+      },
+      {
+        "type": "product",
+        "nl": "🛒 Download de complete gids – link in bio",
+        "en": "🛒 Download the complete guide – link in bio",
+        "use_on": ["instagram", "tiktok", "pinterest", "youtube"]
+      }
+    ],
+    "weekly_schedule": {
+      "monday": "link_in_bio",
+      "tuesday": "save",
+      "wednesday": "follow",
+      "thursday": "comment",
+      "friday": "share",
+      "saturday": "product",
+      "sunday": "save"
+    }
+  },
+  "product_links": {
+    "survival_basis_gids_nl": "https://fixfirstnl.gumroad.com/l/survival-basis-gids-nl",
+    "emergency_toolkit_pro": "https://fixfirstnl.gumroad.com/l/emergency-toolkit-pro",
+    "weekend_klusplanner": "https://fixfirstnl.gumroad.com/l/weekend-klusplanner",
+    "budget_bespaar_gids": "https://fixfirstnl.gumroad.com/l/budget-bespaar-gids",
+    "diy_keukenkast_reparatie_gids": "https://fixfirstnl.gumroad.com/l/diy-keukenkast-reparatie-gids"
+  }
+}

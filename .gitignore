@@ -217,3 +217,9 @@ logs/*.log
 
 # Manifest with real paths
 manifest.json
+
+# Generated output (keep directory structure via .gitkeep)
+output/*.csv
+output/*.json
+output/mockups/*.html
+output/covers/
