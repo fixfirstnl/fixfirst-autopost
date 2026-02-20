@@ -222,3 +222,8 @@ manifest.json
 output/*.md
 output/*.html
 output/*.pdf
+# Generated output (keep directory structure via .gitkeep)
+output/*.csv
+output/*.json
+output/mockups/*.html
+output/covers/
