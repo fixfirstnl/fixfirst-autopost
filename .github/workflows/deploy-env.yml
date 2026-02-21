@@ -39,7 +39,16 @@ jobs:
             VPS_HOST=${{ secrets.VPS_HOST }}
             ENVEOF
             chmod 600 "$TMPENV"
+            mkdir -p /opt/fixfirst-autopost
             mv "$TMPENV" /opt/fixfirst-autopost/.env
+            if [ ! -d /opt/fixfirst-autopost/.git ]; then
+              git clone https://github.com/fixfirstnl/fixfirst-autopost.git /tmp/fixfirst-autopost-repo
+              cp -r /tmp/fixfirst-autopost-repo/* /opt/fixfirst-autopost/
+              cp -r /tmp/fixfirst-autopost-repo/.git /opt/fixfirst-autopost/
+              rm -rf /tmp/fixfirst-autopost-repo
+            else
+              cd /opt/fixfirst-autopost && git pull origin main
+            fi
             cd /opt/fixfirst-autopost
             npm install --production
             if [ -f systemd/fixfirst-autopost.service ]; then
