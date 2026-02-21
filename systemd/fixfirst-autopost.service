@@ -7,9 +7,12 @@ Type=simple
 User=root
 WorkingDirectory=/opt/fixfirst-autopost/claw-autonomy-bridge
 EnvironmentFile=/opt/fixfirst-autopost/.env
+ExecStartPre=/bin/bash -c 'fuser -k 3006/tcp 2>/dev/null || true; sleep 2'
 ExecStart=/usr/bin/node /opt/fixfirst-autopost/claw-autonomy-bridge/server.js
 Restart=on-failure
-RestartSec=5
+RestartSec=10
+StartLimitIntervalSec=60
+StartLimitBurst=3
 StandardOutput=journal
 StandardError=journal
 
