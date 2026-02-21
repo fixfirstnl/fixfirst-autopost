@@ -24,9 +24,11 @@ jobs:
             set -e
             TMPENV=$(mktemp)
             cat > "$TMPENV" << 'ENVEOF'
+            PORT=3006
+            NODE_ENV=production
             TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
             TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}
-            MAILERLITE_API_TOKEN=${{ secrets.MAILERLITE_API_TOKEN }}
+            MAILERLITE_API_KEY=${{ secrets.MAILERLITE_API_TOKEN }}
             DIGISTORE24_API_KEY=${{ secrets.DIGISTORE24_API_KEY }}
             YOUTUBE_CLIENT_ID=${{ secrets.YOUTUBE_CLIENT_ID }}
             YOUTUBE_CLIENT_SECRET=${{ secrets.YOUTUBE_CLIENT_SECRET }}
@@ -39,6 +41,12 @@ jobs:
             VPS_HOST=${{ secrets.VPS_HOST }}
             PINTEREST_ACCESS_TOKEN=${{ secrets.PINTEREST_ACCESS_TOKEN }}
             PINTEREST_APP_ID=${{ secrets.PINTEREST_APP_ID }}
+            NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}
+            NOTION_API_KEY=${{ secrets.NOTION_TOKEN }}
+            NOTION_CONTENT_HUB_DB=${{ secrets.NOTION_CONTENT_HUB_DB }}
+            NOTION_DELEGATIONS_DB=${{ secrets.NOTION_DELEGATIONS_DB }}
+            NOTION_PRODUCTS_DB=${{ secrets.NOTION_PRODUCTS_DB }}
+            NOTION_TASKS_DB=${{ secrets.NOTION_TASKS_DB }}
             ENVEOF
             chmod 600 "$TMPENV"
             mkdir -p /opt/fixfirst-autopost
@@ -67,7 +75,6 @@ jobs:
               fi
             done
             sleep 3
-
             # Verify ports are free
             for PORT in 3006 3001; do
               if sudo lsof -ti :$PORT >/dev/null 2>&1; then
