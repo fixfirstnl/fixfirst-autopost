@@ -1,13 +1,13 @@
 [Unit]
-Description=FixFirst Autopost Bridge
+Description=FixFirst Claw Autonomy Bridge
 After=network.target
 
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/fixfirst-autopost
+WorkingDirectory=/opt/fixfirst-autopost/claw-autonomy-bridge
 EnvironmentFile=/opt/fixfirst-autopost/.env
-ExecStart=/usr/bin/node /opt/fixfirst-autopost/bridge.js
+ExecStart=/usr/bin/node /opt/fixfirst-autopost/claw-autonomy-bridge/server.js
 Restart=on-failure
 RestartSec=5
 StandardOutput=journal
