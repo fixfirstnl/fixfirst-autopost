@@ -48,30 +48,35 @@ jobs:
             echo "Phase 1: Stopping all services..."
             sudo systemctl stop fixfirst-autopost 2>/dev/null || true
             sudo systemctl reset-failed fixfirst-autopost 2>/dev/null || true
+            sudo pm2 stop all 2>/dev/null || true
+            sudo pm2 delete all 2>/dev/null || true
             pm2 stop all 2>/dev/null || true
             pm2 delete all 2>/dev/null || true
             sleep 2
 
-            # === PHASE 2: KILL ALL PROCESSES ON PORTS ===
+            # === PHASE 2: KILL ALL PROCESSES ON PORTS (with sudo) ===
             echo "Phase 2: Killing processes on ports 3006 and 3001..."
+            sudo fuser -k 3006/tcp 2>/dev/null || true
+            sudo fuser -k 3001/tcp 2>/dev/null || true
+            sleep 1
             for PORT in 3006 3001; do
-              PIDS=$(lsof -ti :$PORT 2>/dev/null || true)
+              PIDS=$(sudo lsof -ti :$PORT 2>/dev/null || true)
               if [ -n "$PIDS" ]; then
                 echo "Killing PIDs on port $PORT: $PIDS"
-                echo "$PIDS" | xargs kill -9 2>/dev/null || true
+                echo "$PIDS" | sudo xargs kill -9 2>/dev/null || true
               fi
             done
             sleep 3
 
             # Verify ports are free
             for PORT in 3006 3001; do
-              if lsof -ti :$PORT >/dev/null 2>&1; then
-                echo "ERROR: Port $PORT still in use after kill!"
-                lsof -i :$PORT
-                exit 1
+              if sudo lsof -ti :$PORT >/dev/null 2>&1; then
+                echo "WARNING: Port $PORT still in use, trying harder..."
+                sudo fuser -k -9 $PORT/tcp 2>/dev/null || true
+                sleep 2
               fi
             done
-            echo "Ports 3006 and 3001 are free."
+            echo "Port cleanup complete."
 
             # === PHASE 3: GIT CLONE OR PULL ===
             echo "Phase 3: Updating code..."
@@ -96,12 +101,8 @@ jobs:
 
             # === PHASE 5: FINAL PORT CHECK AND START ===
             echo "Phase 5: Final port check and service start..."
-            for PORT in 3006 3001; do
-              PIDS=$(lsof -ti :$PORT 2>/dev/null || true)
-              if [ -n "$PIDS" ]; then
-                echo "$PIDS" | xargs kill -9 2>/dev/null || true
-              fi
-            done
+            sudo fuser -k 3006/tcp 2>/dev/null || true
+            sudo fuser -k 3001/tcp 2>/dev/null || true
             sleep 2
 
             # Update and start systemd service
@@ -115,7 +116,16 @@ jobs:
             # Wait and verify
             echo "Waiting for service to start..."
             sleep 8
-            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; sudo journalctl -u fixfirst-autopost -n 50 --no-pager; exit 1; }
+            if ! sudo systemctl is-active --quiet fixfirst-autopost; then
+              echo "Service not active, checking logs..."
+              sudo journalctl -u fixfirst-autopost -n 50 --no-pager
+              echo "Trying restart..."
+              sudo fuser -k 3006/tcp 2>/dev/null || true
+              sleep 3
+              sudo systemctl restart fixfirst-autopost
+              sleep 8
+              sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed after retry'; sudo journalctl -u fixfirst-autopost -n 30 --no-pager; exit 1; }
+            fi
 
             # Test health endpoint
             HEALTH=$(curl -s http://localhost:3006/api/health || echo 'HEALTH_CHECK_FAILED')
