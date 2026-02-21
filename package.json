@@ -1,0 +1,14 @@
+{
+  "name": "fixfirst-autopost",
+  "version": "1.0.0",
+  "description": "FixFirst Autopost Bridge",
+  "main": "bridge.js",
+  "scripts": {
+    "start": "node bridge.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  }
+}

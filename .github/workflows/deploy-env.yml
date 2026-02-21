@@ -40,6 +40,13 @@ jobs:
             ENVEOF
             chmod 600 "$TMPENV"
             mv "$TMPENV" /opt/fixfirst-autopost/.env
+            cd /opt/fixfirst-autopost
+            npm install --production
+            if [ -f systemd/fixfirst-autopost.service ]; then
+              sudo cp systemd/fixfirst-autopost.service /etc/systemd/system/
+            fi
+            sudo systemctl daemon-reload
+            sudo systemctl enable fixfirst-autopost
             sudo systemctl restart fixfirst-autopost
             sleep 5
             sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; exit 1; }
