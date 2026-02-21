@@ -1,0 +1,56 @@
+name: Fix n8n secure cookie setting
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-n8n:
+    name: Update n8n Docker config
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Fix n8n secure cookie via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            echo '=== Updating n8n docker-compose with secure cookie fix ==='
+            cat > /opt/n8n/docker-compose.yml << 'COMPOSE_EOF'
+            version: "3.8"
+            services:
+              n8n:
+                image: n8nio/n8n:latest
+                container_name: n8n
+                restart: always
+                ports:
+                  - "5678:5678"
+                environment:
+                  - N8N_SECURE_COOKIE=false
+                  - N8N_HOST=0.0.0.0
+                  - N8N_PORT=5678
+                  - N8N_PROTOCOL=http
+                  - NODE_ENV=production
+                  - GENERIC_TIMEZONE=Europe/Amsterdam
+                volumes:
+                  - n8n_data:/home/node/.n8n
+            volumes:
+              n8n_data:
+            COMPOSE_EOF
+
+            echo '=== Restarting n8n container ==='
+            cd /opt/n8n
+            docker compose down || docker-compose down
+            docker compose up -d || docker-compose up -d
+
+            echo '=== Waiting for n8n to start ==='
+            sleep 10
+            if docker ps | grep -q n8n; then
+              echo 'SUCCESS: n8n is running with secure cookie disabled'
+            else
+              echo 'WARNING: n8n may still be starting'
+            fi
+            echo 'n8n UI: http://'$(hostname -I | awk "{print \$1}")':5678'
