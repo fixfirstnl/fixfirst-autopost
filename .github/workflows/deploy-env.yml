@@ -1,0 +1,62 @@
+name: Deploy .env to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-env:
+    name: Deploy .env config to VPS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Deploy .env via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            TMPENV=$(mktemp)
+            cat > "$TMPENV" << 'ENVEOF'
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}
+            MAILERLITE_API_TOKEN=${{ secrets.MAILERLITE_API_TOKEN }}
+            DIGISTORE24_API_KEY=${{ secrets.DIGISTORE24_API_KEY }}
+            YOUTUBE_CLIENT_ID=${{ secrets.YOUTUBE_CLIENT_ID }}
+            YOUTUBE_CLIENT_SECRET=${{ secrets.YOUTUBE_CLIENT_SECRET }}
+            ETSY_API_KEY=${{ secrets.ETSY_API_KEY }}
+            ETSY_SHARED_SECRET=${{ secrets.ETSY_SHARED_SECRET }}
+            GUMROAD_APP_ID=${{ secrets.GUMROAD_APP_ID }}
+            GUMROAD_APP_SECRET=${{ secrets.GUMROAD_APP_SECRET }}
+            GUMROAD_ACCESS_TOKEN=${{ secrets.GUMROAD_ACCESS_TOKEN }}
+            GUMROAD_SELLER_ID=${{ secrets.GUMROAD_SELLER_ID }}
+            VPS_HOST=${{ secrets.VPS_HOST }}
+            ENVEOF
+            chmod 600 "$TMPENV"
+            mv "$TMPENV" /opt/fixfirst-autopost/.env
+            sudo systemctl restart fixfirst-autopost
+            sleep 5
+            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; exit 1; }
+            echo "Service is running successfully"
+
+      - name: Notify Telegram on success
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="✅ *.env deployed successfully to VPS*%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}" \
+            -d parse_mode="Markdown"
+
+      - name: Notify Telegram on failure
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="❌ *.env deployment FAILED*%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}" \
+            -d parse_mode="Markdown"
