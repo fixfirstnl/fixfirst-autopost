@@ -14,6 +14,20 @@ app.use('/api', apiRoutes);
 const healthRouter = require('./health');
 app.use(healthRouter);
 
+// Extended autonomy modules
+app.use('/api/later', require('./modules/later-scheduler'));
+app.use('/api/tiktok', require('./modules/tiktok-poster'));
+app.use('/api/instagram', require('./modules/instagram-poster'));
+app.use('/api/youtube', require('./modules/youtube-uploader'));
+app.use('/api/pinterest', require('./modules/pinterest-pinner'));
+app.use('/api/gumroad', require('./modules/gumroad-manager'));
+app.use('/api/digistore', require('./modules/digistore-manager'));
+app.use('/api/notion', require('./modules/notion-sync'));
+app.use('/api/mailerlite', require('./modules/mailerlite-manager'));
+app.use('/api/analytics', require('./modules/analytics-aggregator'));
+app.use('/api/queue', require('./modules/content-queue'));
+app.use('/api/cron', require('./modules/cron-scheduler'));
+
 const { checkHealth, getLastHealth } = require('./orchestrator/health-monitor');
 const { getStatus } = require('./orchestrator/task-queue');
 
@@ -36,6 +50,9 @@ app.listen(PORT, () => {
 
   const scheduler = require('./orchestrator/scheduler');
   scheduler.start();
+
+  const { startCronJobs } = require('./modules/cron-scheduler');
+  startCronJobs();
 
   checkHealth().catch(err => console.error('[health] Initial check failed:', err.message));
 });

@@ -232,3 +232,4 @@ output/covers/
 
 # Node.js
 claw-autonomy-bridge/node_modules/
+claw-autonomy-bridge/data/content-queue.json
