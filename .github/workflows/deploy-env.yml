@@ -60,6 +60,13 @@ jobs:
             npm install --production
             # Copy .env to claw-autonomy-bridge for dotenv
             cp /opt/fixfirst-autopost/.env /opt/fixfirst-autopost/claw-autonomy-bridge/.env
+            # Kill any existing processes on port 3006 and 3001
+            sudo fuser -k 3006/tcp 2>/dev/null || true
+            sudo fuser -k 3001/tcp 2>/dev/null || true
+            # Stop PM2 processes if running
+            pm2 stop all 2>/dev/null || true
+            pm2 delete all 2>/dev/null || true
+            sleep 2
             # Update systemd service and restart
             if [ -f /opt/fixfirst-autopost/systemd/fixfirst-autopost.service ]; then
               sudo cp /opt/fixfirst-autopost/systemd/fixfirst-autopost.service /etc/systemd/system/
@@ -68,7 +75,7 @@ jobs:
             sudo systemctl enable fixfirst-autopost
             sudo systemctl restart fixfirst-autopost
             sleep 5
-            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; sudo journalctl -u fixfirst-autopost -n 20 --no-pager; exit 1; }
+            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; sudo journalctl -u fixfirst-autopost -n 30 --no-pager; exit 1; }
             # Test health endpoint
             HEALTH=$(curl -s http://localhost:3006/api/health || echo 'HEALTH_CHECK_FAILED')
             echo "Health check: $HEALTH"
