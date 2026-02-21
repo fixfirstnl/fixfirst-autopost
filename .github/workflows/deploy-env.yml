@@ -43,7 +43,38 @@ jobs:
             chmod 600 "$TMPENV"
             mkdir -p /opt/fixfirst-autopost
             mv "$TMPENV" /opt/fixfirst-autopost/.env
-            # Git clone or pull
+
+            # === PHASE 1: STOP EVERYTHING ===
+            echo "Phase 1: Stopping all services..."
+            sudo systemctl stop fixfirst-autopost 2>/dev/null || true
+            sudo systemctl reset-failed fixfirst-autopost 2>/dev/null || true
+            pm2 stop all 2>/dev/null || true
+            pm2 delete all 2>/dev/null || true
+            sleep 2
+
+            # === PHASE 2: KILL ALL PROCESSES ON PORTS ===
+            echo "Phase 2: Killing processes on ports 3006 and 3001..."
+            for PORT in 3006 3001; do
+              PIDS=$(lsof -ti :$PORT 2>/dev/null || true)
+              if [ -n "$PIDS" ]; then
+                echo "Killing PIDs on port $PORT: $PIDS"
+                echo "$PIDS" | xargs kill -9 2>/dev/null || true
+              fi
+            done
+            sleep 3
+
+            # Verify ports are free
+            for PORT in 3006 3001; do
+              if lsof -ti :$PORT >/dev/null 2>&1; then
+                echo "ERROR: Port $PORT still in use after kill!"
+                lsof -i :$PORT
+                exit 1
+              fi
+            done
+            echo "Ports 3006 and 3001 are free."
+
+            # === PHASE 3: GIT CLONE OR PULL ===
+            echo "Phase 3: Updating code..."
             if [ ! -d /opt/fixfirst-autopost/.git ]; then
               git clone https://github.com/fixfirstnl/fixfirst-autopost.git /tmp/fixfirst-autopost-repo
               cp -r /tmp/fixfirst-autopost-repo/* /opt/fixfirst-autopost/
@@ -52,34 +83,45 @@ jobs:
             else
               cd /opt/fixfirst-autopost && git pull origin main
             fi
-            # Install dependencies for root project
+
+            # === PHASE 4: INSTALL DEPENDENCIES ===
+            echo "Phase 4: Installing dependencies..."
             cd /opt/fixfirst-autopost
             npm install --production
-            # Install dependencies for claw-autonomy-bridge
             cd /opt/fixfirst-autopost/claw-autonomy-bridge
             npm install --production
-            # Copy .env to claw-autonomy-bridge for dotenv
+
+            # Copy .env to claw-autonomy-bridge
             cp /opt/fixfirst-autopost/.env /opt/fixfirst-autopost/claw-autonomy-bridge/.env
-            # Kill any existing processes on port 3006 and 3001
-            sudo fuser -k 3006/tcp 2>/dev/null || true
-            sudo fuser -k 3001/tcp 2>/dev/null || true
-            # Stop PM2 processes if running
-            pm2 stop all 2>/dev/null || true
-            pm2 delete all 2>/dev/null || true
+
+            # === PHASE 5: FINAL PORT CHECK AND START ===
+            echo "Phase 5: Final port check and service start..."
+            for PORT in 3006 3001; do
+              PIDS=$(lsof -ti :$PORT 2>/dev/null || true)
+              if [ -n "$PIDS" ]; then
+                echo "$PIDS" | xargs kill -9 2>/dev/null || true
+              fi
+            done
             sleep 2
-            # Update systemd service and restart
+
+            # Update and start systemd service
             if [ -f /opt/fixfirst-autopost/systemd/fixfirst-autopost.service ]; then
               sudo cp /opt/fixfirst-autopost/systemd/fixfirst-autopost.service /etc/systemd/system/
             fi
             sudo systemctl daemon-reload
             sudo systemctl enable fixfirst-autopost
-            sudo systemctl restart fixfirst-autopost
-            sleep 5
-            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; sudo journalctl -u fixfirst-autopost -n 30 --no-pager; exit 1; }
+            sudo systemctl start fixfirst-autopost
+
+            # Wait and verify
+            echo "Waiting for service to start..."
+            sleep 8
+            sudo systemctl is-active --quiet fixfirst-autopost || { echo 'Service failed to start'; sudo journalctl -u fixfirst-autopost -n 50 --no-pager; exit 1; }
+
             # Test health endpoint
             HEALTH=$(curl -s http://localhost:3006/api/health || echo 'HEALTH_CHECK_FAILED')
             echo "Health check: $HEALTH"
             echo "Service is running successfully"
+
       - name: Notify Telegram on success
         if: success()
         run: |
@@ -87,6 +129,7 @@ jobs:
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
             -d text="✅ *Claw Autonomy Bridge deployed successfully*%0APort: 3006%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}" \
             -d parse_mode="Markdown"
+
       - name: Notify Telegram on failure
         if: failure()
         run: |
