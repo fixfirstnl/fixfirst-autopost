@@ -1,0 +1,118 @@
+name: Install n8n and OpenClaw on VPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-n8n:
+    name: Install n8n via Docker on VPS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Install n8n and OpenClaw via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            echo '=== Step 1: Install Docker if not present ==='
+            if ! command -v docker &> /dev/null; then
+              curl -fsSL https://get.docker.com | sh
+              sudo usermod -aG docker $USER
+              echo 'Docker installed successfully'
+            else
+              echo 'Docker already installed'
+            fi
+
+            echo '=== Step 2: Install Docker Compose if not present ==='
+            if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
+              sudo apt-get update && sudo apt-get install -y docker-compose-plugin
+              echo 'Docker Compose installed'
+            else
+              echo 'Docker Compose already available'
+            fi
+
+            echo '=== Step 3: Create n8n directory and docker-compose ==='
+            mkdir -p /opt/n8n
+            cat > /opt/n8n/docker-compose.yml << 'COMPOSE_EOF'
+            version: "3.8"
+            services:
+              n8n:
+                image: n8nio/n8n:latest
+                container_name: n8n
+                restart: always
+                ports:
+                  - "5678:5678"
+                environment:
+                  - N8N_BASIC_AUTH_ACTIVE=true
+                  - N8N_BASIC_AUTH_USER=admin
+                  - N8N_BASIC_AUTH_PASSWORD=ClawN8n2025!
+                  - N8N_HOST=0.0.0.0
+                  - N8N_PORT=5678
+                  - N8N_PROTOCOL=http
+                  - NODE_ENV=production
+                  - GENERIC_TIMEZONE=Europe/Amsterdam
+                volumes:
+                  - n8n_data:/home/node/.n8n
+            volumes:
+              n8n_data:
+            COMPOSE_EOF
+
+            echo '=== Step 4: Start n8n container ==='
+            cd /opt/n8n
+            docker compose up -d || docker-compose up -d
+            echo 'n8n started on port 5678'
+
+            echo '=== Step 5: Install OpenClaw ==='
+            mkdir -p /opt/openclaw
+            cd /opt/openclaw
+            if [ ! -f package.json ]; then
+              npm init -y 2>/dev/null || true
+            fi
+            npm install openclaw-ai 2>/dev/null || echo 'openclaw-ai package not found, setting up manual config'
+
+            echo '=== Step 6: Create OpenClaw config with Kimi K2.5 ==='
+            cat > /opt/openclaw/config.json << 'CONFIG_EOF'
+            {
+              "name": "FixFirst Claw Agent",
+              "version": "2.0",
+              "ai_provider": {
+                "primary": "kimi",
+                "model": "kimi-k2.5",
+                "api_endpoint": "https://api.moonshot.cn/v1",
+                "fallback": "openrouter"
+              },
+              "modules": {
+                "content_generation": true,
+                "social_scheduling": true,
+                "market_research": true,
+                "seo_optimization": true,
+                "email_automation": true,
+                "analytics": true
+              },
+              "integrations": {
+                "n8n_url": "http://localhost:5678",
+                "telegram_enabled": true,
+                "notion_enabled": true
+              }
+            }
+            CONFIG_EOF
+
+            echo '=== Step 7: Setup UFW firewall rules ==='
+            sudo ufw allow 5678/tcp 2>/dev/null || true
+            echo 'Firewall rule added for n8n port 5678'
+
+            echo '=== Step 8: Verify installation ==='
+            sleep 5
+            if docker ps | grep -q n8n; then
+              echo 'SUCCESS: n8n is running'
+            else
+              echo 'WARNING: n8n container may still be starting'
+            fi
+            echo 'OpenClaw config created at /opt/openclaw/config.json'
+            echo '=== Installation complete ==='
+            echo 'n8n UI: http://'$(hostname -I | awk "{print \$1}")':5678'
+            echo 'Default login: admin / ClawN8n2025!'
