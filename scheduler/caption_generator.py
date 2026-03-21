@@ -70,20 +70,41 @@ def _seo_title(title: str) -> str:
 
 def _youtube_description(entry: dict) -> str:
     """Build a YouTube SEO description from an entry."""
+    title = entry.get("title", "")
     caption = entry.get("caption", "")
     description = entry.get("description", "")
     tags = entry.get("hashtags", entry.get("tags", []))
-    product_url = entry.get("product_url", "https://fixfirst.nl")
+
+    summary = caption or description or ""
 
     parts: list[str] = []
-    if caption:
-        parts.append(caption)
-    if description:
-        parts.append(description)
-    parts.append("\n👇 Meer tips & gratis gidsen:")
-    parts.append(product_url)
+    if title:
+        parts.append(title)
+    if summary:
+        parts.append(summary)
+    parts.append(
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        "📧 FREE 72-HOUR SURVIVAL CHECKLIST:\n"
+        "👉 Get it free: https://linktr.ee/fixfirstnl\n"
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        "🔥 RECOMMENDED SURVIVAL RESOURCES:\n"
+        "👉 Water Independence Guide: https://uswaterrevolution.com/#aff=fixfirstnl8890\n"
+        "👉 Emergency Survival Binder ($19.99): https://fixfirst.gumroad.com/l/cpwvj\n"
+        "👉 Self-Sufficient Backyard: https://independentbackyard.com/my-book/#aff=fixfirstnl8890\n"
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        "🛒 OUR SURVIVAL GUIDE SHOP:\n"
+        "📕 Gumroad (digital PDFs): https://fixfirst.gumroad.com/\n"
+        "🏪 Etsy (printable guides): https://www.etsy.com/shop/FixFirstNL\n"
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        "📺 FOLLOW FIXFIRST:\n"
+        "▶️ YouTube: https://youtube.com/@fixfirstnl\n"
+        "📱 TikTok: https://tiktok.com/@fixfirstnl\n"
+        "📸 Instagram: https://instagram.com/fixfirstnl\n"
+        "🔗 All links: https://linktr.ee/fixfirstnl\n"
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    )
     if tags:
-        parts.append("\n" + _hashtag_string(tags))
+        parts.append(_hashtag_string(tags))
     return "\n\n".join(parts)
 
 
