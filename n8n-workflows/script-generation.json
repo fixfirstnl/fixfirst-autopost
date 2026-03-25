@@ -1,0 +1,227 @@
+{
+  "name": "FixFirst - Script Generation (Zero-Credit)",
+  "version": "1",
+  "triggers": [
+    {
+      "id": "Manual Trigger",
+      "type": "manualTrigger",
+      "typeVersion": 1,
+      "parameters": {},
+      "name": "Generate Script",
+      "position": [
+        420,
+        240
+      ]
+    },
+    {
+      "id": "State Dependent Trigger",
+      "type": "dateTimeTrigger",
+      "typeVersion": 1,
+      "parameters": {
+        "mode": "custom",
+        "customDate": "2026-01-01",
+        "customTime": 1800
+      },
+      "name": "Tuesday Scripting",
+      "position": [
+        420,
+        480
+      ]
+    }
+  ],
+  "parallel": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Trend from SQLite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "State Dependent Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Trend from SQLite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Trend from SQLite": {
+      "main": [
+        [
+          {
+            "node": "Kimi - Generate Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kimi - Generate Script": {
+      "main": [
+        [
+          {
+            "node": "Save Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Script": {
+      "main": [
+        [
+          {
+            "node": "Generate Captions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Captions": {
+      "main": [
+        [
+          {
+            "node": "Save to Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "Get Trend from SQLite",
+      "name": "Get Trend from SQLite",
+      "type": "nodes-code",
+      "typeVersion": 1,
+      "position": [
+        620,
+        240
+      ],
+      "parameters": {
+        "js3ql": {
+          "database": "fixfirst",
+          "databaseApiKey": "",
+          "operation": "execute",
+          "query": "SELECT * FROM trends WHERE date = {{$format($execution.startDate, 'YYYY-MM-DD')}} ORDER BY score DESC LIMIT 1"
+        }
+      }
+    },
+    {
+      "id": "Kimi - Generate Script",
+      "name": "Kimi - Generate Script",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        820,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://{{$execution.mode==='manual' ? 'enver8rendersv2sc.services.icu4basic.io' : '192.168.1.85'}}:8000/v1/chat/completions",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "model": "moonshot/kimi-k2-5",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a viral content writer for fixFirst. Create a 30-45 second script for a YouTube Short. MUST start with a 1.5s visual hook. Focus on survival/emergency preparedness. Return json: {'hook':'','script':',''cta':''}"
+            },
+            {
+              "role": "user",
+              "content": "Trend: ==${{$json.extract($response, message.content)}}=="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Save Script",
+      "name": "Save Script",
+      "type": "nodes-code",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        240
+      ],
+      "parameters": {
+        "js3ql": {
+          "database": "fixfirst",
+          "databaseApiKey": "",
+          "operation": "execute",
+          "query": "INSERT INTO content (date, script, hook_type, status) VALUES ({{$format($execution.startDate, 'YYYY-MM-DD')}}, {{$json.extract($response, message.content)}}, '1.5s-hook', 'draft')"
+        }
+      }
+    },
+    {
+      "id": "Generate Captions",
+      "name": "Generate Captions",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1220,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://{{$execution.mode==='manual' ? 'enver8rendersv2sc.services.icu4basic.io' : '192.168.1.85'}}:8000/v1/chat/completions",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "model": "moonshot/kimi-k2-5",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Generate SEO-optimized captions for Tiktok, Instagram Reels, and YouTube Shorts. Return json: {'tiktok':'','instagram':'','youtube':''}"
+            },
+            {
+              "role": "user",
+              "content": "Script: ==${{$json.extract($response, message.content)}}=="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Save to Files",
+      "name": "Save to Files",
+      "type": "nodes-code",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        240
+      ],
+      "parameters": {
+        "jsPathing": {
+          "value": "{{$execution.mode==='manual' ? '/opt/fixfirst/scripts/' : '/home/ubuntu/fixfirst/scripts/'}}/script_{{$execution.id}}.md",
+          "command": "write"}
+      }
+    }
+  ],
+  "settings": {
+    "executionOrder": "parallel",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "static": "active",
+  "tags": [
+    "fixfirst",
+    "script",
+    "content"
+  ]
+}
