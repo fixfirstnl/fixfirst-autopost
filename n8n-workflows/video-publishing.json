@@ -1,0 +1,242 @@
+{
+  "name": "FixFirst - Video Publishing (Zero-Credit)",
+  "version": "1",
+  "triggers": [
+    {
+      "id": "Webhook Trigger",
+      "type": "webhookTrigger",
+      "typeVersion": 1,
+      "parameters": {
+        "path": "publish-video",
+        "responseMode": "response",
+        "options": {}
+      },
+      "name": "Approval Webhook",
+      "position": [
+        420,
+        240
+      ]
+    }
+  ],
+  "parallel": {},
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Pending Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pending Content": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs - Voiceover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs - Voiceover": {
+      "main": [
+        [
+          {
+            "node": "Upload to TikTok",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload to Instagram",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Upload to YouTube",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Upload to TikTok": {
+      "main": [
+        [
+          {
+            "node": "Log Publish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Instagram": {
+      "main": [
+        [
+          {
+            "node": "Log Publish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to YouTube": {
+      "main": [
+        [
+          {
+            "node": "Log Publish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "Get Pending Content",
+      "name": "Get Pending Content",
+      "type": "nodes-code",
+      "typeVersion": 1,
+      "position": [
+        620,
+        240
+      ],
+      "parameters": {
+        "js3ql": {
+          "database": "fixfirst",
+          "databaseApiKey": "",
+          "operation": "execute",
+          "query": "SELECT * FROM content WHERE status = 'draft' ORDER BY id DESC LIMIT 1"
+        }
+      }
+    },
+    {
+      "id": "ElevenLabs - Voiceover",
+      "name": "ElevenLabs - Voiceover",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        820,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to/speech",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "text": ==${{$json.extract($response, script)}}==",
+          "model_id": "YJFzfBtCYWjQbT5P4YVX",
+          "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.75,
+            "style": 0.5
+          }
+        }
+      }
+    },
+    {
+      "id": "Upload to TikTok",
+      "name": "Upload to TikTok",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1020,
+        140
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ayrshare.com/post",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "post": "={{$json.extract($response, captions.tiktok)}}==",
+          "platforms": ["tiktok"]
+        }
+      }
+    },
+    {
+      "id": "Upload to Instagram",
+      "name": "Upload to Instagram",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1020,
+        340
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ayrshare.com/post",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "post": "={{$json.extract($response, captions.instagram)}}==",
+          "platforms": ["instagram"]
+        }
+      }
+    },
+    {
+      "id": "Upload to YouTube",
+      "name": "Upload to YouTube",
+      "type": "nodes-httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1020,
+        540
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ayrshare.com/post",
+        "authentication": "genericCredType",
+        "genericCredType": "httpHeaderAuth",
+        "sendBody": true,
+        "switchToGet": true,
+        "body": {
+          "post": "}{{$json.extract($response, captions.youtube)}}==",
+          "platforms": ["youtube"]
+        }
+      }
+    },
+    {
+      "id": "Log Publish",
+      "name": "Log Publish",
+      "type": "nodes-code",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        340
+      ],
+      "parameters": {
+        "js3ql": {
+          "database": "fixfirst",
+          "databaseApiKey": "",
+          "operation": "execute",
+          "query": "UPDATE content SET status = 'published' WHERE id = {{$response.id}}"
+        }
+      }
+    }
+  ],
+  "settings": {
+    "executionOrder": "parallel",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "static": "active",
+  "tags": [
+    "fixfirst",
+    "publish",
+    "social"
+  ]
+}
